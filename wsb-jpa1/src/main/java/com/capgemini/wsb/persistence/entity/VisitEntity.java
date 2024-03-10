@@ -1,13 +1,9 @@
 package com.capgemini.wsb.persistence.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "VISIT")
@@ -17,10 +13,28 @@ public class VisitEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column
 	private String description;
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+	// One direction
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			orphanRemoval = true
+	)
+	@JoinColumn(name = "VISIT_ID")
+	private Collection<MedicalTreatmentEntity> medicalTreatments;
+
+	// Two direction
+	@ManyToOne
+	private DoctorEntity doctor;
+
+	// Two direction
+	@ManyToOne
+	private PatientEntity patient;
 
 	public Long getId() {
 		return id;
