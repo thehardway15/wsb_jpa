@@ -60,9 +60,12 @@ public class VisitEntity {
 		this.time = time;
 	}
 
-
 	public Collection<MedicalTreatmentEntity> getMedicalTreatments() {
 		return medicalTreatments;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
 	}
 
 }

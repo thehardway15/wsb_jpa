@@ -1,6 +1,7 @@
 package com.capgemini.wsb.mapper;
 
 import com.capgemini.wsb.dto.AddressTO;
+import com.capgemini.wsb.dto.DoctorShortTO;
 import com.capgemini.wsb.dto.DoctorTO;
 import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.persistence.entity.DoctorEntity;
@@ -48,4 +49,18 @@ public final class DoctorMapper {
         return doctorTO;
     }
 
+    public static DoctorShortTO mapToTOShort(DoctorEntity doctor) {
+
+        if (doctor == null)
+        {
+            return null;
+        }
+        final DoctorShortTO doctorTO = new DoctorShortTO();
+        doctorTO.setId(doctor.getId());
+        doctorTO.setFirstName(doctor.getFirstName());
+        doctorTO.setLastName(doctor.getLastName());
+        doctorTO.setDoctorNumber(doctor.getDoctorNumber());
+        doctorTO.setSpecialization(doctor.getSpecialization());
+        return doctorTO;
+    }
 }

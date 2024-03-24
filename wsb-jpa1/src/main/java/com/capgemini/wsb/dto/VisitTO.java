@@ -15,6 +15,8 @@ public class VisitTO implements Serializable {
 
     private Collection<MedicalTreatmentTO> medicalTreatments;
 
+    private DoctorShortTO doctor;
+
 
     public Long getId() {
         return id;
@@ -52,5 +54,15 @@ public class VisitTO implements Serializable {
 
     public void setMedicalTreatments(Collection<MedicalTreatmentTO> medicalTreatments) {
         this.medicalTreatments = medicalTreatments;
+    }
+
+
+    public DoctorShortTO getDoctor() {
+        return doctor;
+    }
+
+
+    public void setDoctor(DoctorShortTO doctor) {
+        this.doctor = doctor;
     }
 }
