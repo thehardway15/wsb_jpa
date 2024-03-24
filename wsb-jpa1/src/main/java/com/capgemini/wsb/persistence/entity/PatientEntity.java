@@ -35,7 +35,7 @@ public class PatientEntity {
 	@OneToMany(mappedBy = "patient", orphanRemoval = true)
 	private Collection<VisitEntity> visits;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "PATIENT_TO_ADDRESS",
 			joinColumns = @JoinColumn(name = "PATIENT_ID"),

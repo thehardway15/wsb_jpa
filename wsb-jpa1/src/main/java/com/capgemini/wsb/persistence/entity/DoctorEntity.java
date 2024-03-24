@@ -36,7 +36,7 @@ public class DoctorEntity {
 	@OneToMany(mappedBy = "doctor", orphanRemoval = true)
 	private Collection<VisitEntity> visits;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "DOCTOR_TO_ADDRESS",
 			joinColumns = @JoinColumn(name = "DOCTOR_ID"),
@@ -98,6 +98,14 @@ public class DoctorEntity {
 
 	public void setSpecialization(Specialization specialization) {
 		this.specialization = specialization;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public Collection<AddressEntity> getAddresses() {
+		return addresses;
 	}
 
 }

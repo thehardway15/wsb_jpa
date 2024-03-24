@@ -2,7 +2,8 @@ insert into address (id, address_line1, address_line2, city, postal_code)
             values (1, 'xx', 'yy', 'city', '62-030');
 
 insert into doctor (id, first_name, last_name, specialization, telephone_number, email, doctor_number)
-            values (1, 'Jan', 'Kowalski', 1, '123456789', 'qYUeh@example.com', '123456789');
+            values (1, 'Jan', 'Kowalski', 'SURGEON', '123456789', 'qYUeh@example.com', '123456789'),
+                   (2, 'Jan', 'Nowak', 'OCULIST', '123456789', 'qYUeh@example.com', '123456789');
 
 insert into doctor_to_address (doctor_id, address_id)
             values (1, 1);
