@@ -10,4 +10,6 @@ public interface PatientService {
 
     public List<PatientTO> findAll();
 
+    public Boolean deleteById(final Long id);
+
 }

@@ -35,4 +35,11 @@ public class PatientServiceImpl implements PatientService {
         return entities.stream().map(PatientMapper::mapToTO).collect(Collectors.toList());
     }
 
+
+    @Override
+    public Boolean deleteById(final Long id) {
+        patientDao.delete(id);
+        return true;
+    }
+
 }
