@@ -22,7 +22,7 @@ public final class VisitMapper {
         visitTO.setTime(visitEntity.getTime());
 
         visitTO.setDoctor(DoctorMapper.mapToTOShort(visitEntity.getDoctor()));
-//        visitTO.setPatient(PatientMapper.mapToTO(visitEntity.getPatient()));
+        visitTO.setPatient(PatientMapper.mapToTOShort(visitEntity.getPatient()));
 
         Collection<MedicalTreatmentTO> medicalTreatments = Collections.emptyList();
         if (visitEntity.getMedicalTreatments() != null)

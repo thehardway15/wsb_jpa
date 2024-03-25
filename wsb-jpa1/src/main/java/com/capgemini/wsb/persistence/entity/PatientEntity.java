@@ -102,4 +102,15 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public Boolean isVerified() {
+		return verified;
+	}
+
+	public Collection<VisitEntity> getVisits() {
+		return visits;
+	}
+
+	public void setVerified(Boolean verified) {
+		this.verified = verified;
+	}
 }

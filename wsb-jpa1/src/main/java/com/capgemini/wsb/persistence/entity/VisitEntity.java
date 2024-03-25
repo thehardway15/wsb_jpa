@@ -68,4 +68,7 @@ public class VisitEntity {
 		return doctor;
 	}
 
+	public PatientEntity getPatient() {
+		return patient;
+	}
 }
