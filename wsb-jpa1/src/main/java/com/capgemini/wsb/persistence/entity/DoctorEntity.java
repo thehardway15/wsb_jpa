@@ -11,24 +11,25 @@ public class DoctorEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, nullable = false, unique = true)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50, unique = true)
 	private String telephoneNumber;
 
-	@Column
+	@Column(unique = true, length = 100)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true, length = 50)
 	private String doctorNumber;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
@@ -36,7 +37,7 @@ public class DoctorEntity {
 	@OneToMany(mappedBy = "doctor", orphanRemoval = true)
 	private Collection<VisitEntity> visits;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "DOCTOR_TO_ADDRESS",
 			joinColumns = @JoinColumn(name = "DOCTOR_ID"),
@@ -104,8 +105,12 @@ public class DoctorEntity {
 		return visits;
 	}
 
+	public void setVisits(Collection<VisitEntity> visits) { this.visits = visits; }
+
 	public Collection<AddressEntity> getAddresses() {
 		return addresses;
 	}
+
+	public void setAddresses(Collection<AddressEntity> addresses) { this.addresses = addresses; }
 
 }

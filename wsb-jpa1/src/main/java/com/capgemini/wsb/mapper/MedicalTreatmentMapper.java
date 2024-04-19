@@ -24,7 +24,7 @@ public final class MedicalTreatmentMapper {
         {
             return null;
         }
-        MedicalTreatmentEntity medicalTreatmentEntity = new MedicalTreatmentEntity();
+        final MedicalTreatmentEntity medicalTreatmentEntity = new MedicalTreatmentEntity();
         medicalTreatmentEntity.setId(medicalTreatmentTO.getId());
         medicalTreatmentEntity.setDescription(medicalTreatmentTO.getDescription());
         medicalTreatmentEntity.setType(medicalTreatmentTO.getType());

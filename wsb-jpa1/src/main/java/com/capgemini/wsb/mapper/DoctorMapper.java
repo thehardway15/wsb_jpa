@@ -7,6 +7,7 @@ import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.persistence.entity.DoctorEntity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -28,21 +29,21 @@ public final class DoctorMapper {
         doctorTO.setDoctorNumber(doctorEntity.getDoctorNumber());
         doctorTO.setSpecialization(doctorEntity.getSpecialization());
 
-        Collection<AddressTO> addresses = Collections.emptyList();
+        final Collection<AddressTO> addresses = new ArrayList<>(Collections.emptyList());
         if (doctorEntity.getAddresses() != null)
         {
-            addresses = doctorEntity.getAddresses().stream()
+            addresses.addAll(doctorEntity.getAddresses().stream()
                     .map(AddressMapper::mapToTO)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
         doctorTO.setAddresses(addresses);
 
-        Collection<VisitTO> visits = Collections.emptyList();
+        final Collection<VisitTO> visits = new ArrayList<>(Collections.emptyList());
         if (doctorEntity.getVisits() != null)
         {
-            visits = doctorEntity.getVisits().stream()
+            visits.addAll(doctorEntity.getVisits().stream()
                     .map(VisitMapper::mapToTO)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
         doctorTO.setVisits(visits);
 

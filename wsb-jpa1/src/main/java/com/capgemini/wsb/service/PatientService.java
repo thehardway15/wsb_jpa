@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface PatientService {
 
-    public PatientTO findById(final Long id);
+    PatientTO findById(final Long id);
 
-    public List<PatientTO> findAll();
+    List<PatientTO> findAll();
 
-    public Boolean deleteById(final Long id);
+    Boolean deleteById(final Long id);
 
 }

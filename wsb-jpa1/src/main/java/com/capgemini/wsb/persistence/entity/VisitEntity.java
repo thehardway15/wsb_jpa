@@ -11,6 +11,7 @@ public class VisitEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, nullable = false, unique = true)
 	private Long id;
 
 	@Column
@@ -21,7 +22,7 @@ public class VisitEntity {
 
 	// One direction
 	@OneToMany(
-			cascade = CascadeType.ALL,
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
 			fetch = FetchType.LAZY,
 			orphanRemoval = true
 	)
@@ -29,11 +30,11 @@ public class VisitEntity {
 	private Collection<MedicalTreatmentEntity> medicalTreatments;
 
 	// Two direction
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private DoctorEntity doctor;
 
 	// Two direction
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
 	private PatientEntity patient;
 
 	public Long getId() {
@@ -68,7 +69,12 @@ public class VisitEntity {
 		return doctor;
 	}
 
+	public void setDoctor(DoctorEntity doctor) { this.doctor = doctor; }
+
 	public PatientEntity getPatient() {
 		return patient;
 	}
+
+	public void setPatient(PatientEntity patient) { this.patient = patient; }
+
 }

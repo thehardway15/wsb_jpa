@@ -9,9 +9,10 @@ public class AddressEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, nullable = false, unique = true)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 150)
 	private String city;
 
 	@Column(nullable = false)
@@ -20,13 +21,13 @@ public class AddressEntity {
 	@Column
 	private String addressLine2;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 10)
 	private String postalCode;
 
-	@ManyToMany(mappedBy = "addresses")
+	@ManyToMany(mappedBy = "addresses", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Collection<PatientEntity> patients;
 
-	@ManyToMany(mappedBy = "addresses")
+	@ManyToMany(mappedBy = "addresses", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Collection<DoctorEntity> doctors;
 
 	public Long getId() {
@@ -68,5 +69,13 @@ public class AddressEntity {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
+
+	public Collection<PatientEntity> getPatients() { return patients; }
+
+	public void setPatients(Collection<PatientEntity> patients) { this.patients = patients; }
+
+	public Collection<DoctorEntity> getDoctors() { return doctors; }
+
+	public void setDoctors(Collection<DoctorEntity> doctors) { this.doctors = doctors; }
 
 }

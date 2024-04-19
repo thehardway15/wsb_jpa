@@ -5,6 +5,7 @@ import com.capgemini.wsb.dto.PatientTO;
 import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -27,12 +28,12 @@ public final class PatientMapper {
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
         patientTO.setVerified(patientEntity.isVerified());
 
-        Collection<VisitTO> visits = Collections.emptyList();
+        final Collection<VisitTO> visits = new ArrayList<>(Collections.emptyList());
         if (patientEntity.getVisits() != null)
         {
-            visits = patientEntity.getVisits().stream()
+            visits.addAll(patientEntity.getVisits().stream()
                     .map(VisitMapper::mapToTO)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
         patientTO.setVisits(visits);
 

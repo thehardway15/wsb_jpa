@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DoctorService {
 
-    public DoctorTO findById(final Long id);
+    DoctorTO findById(final Long id);
 
     List<DoctorTO> findAll();
 }

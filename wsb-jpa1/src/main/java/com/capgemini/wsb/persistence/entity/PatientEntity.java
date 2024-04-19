@@ -11,24 +11,25 @@ public class PatientEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(updatable = false, nullable = false, unique = true)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50, unique = true)
 	private String telephoneNumber;
 
-	@Column
+	@Column(unique = true, length = 100)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true, length = 50)
 	private String patientNumber;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 10)
 	private LocalDate dateOfBirth;
 
 	@Column(nullable = false)
@@ -38,7 +39,7 @@ public class PatientEntity {
 	@OneToMany(mappedBy = "patient", orphanRemoval = true)
 	private Collection<VisitEntity> visits;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "PATIENT_TO_ADDRESS",
 			joinColumns = @JoinColumn(name = "PATIENT_ID"),
@@ -106,11 +107,17 @@ public class PatientEntity {
 		return verified;
 	}
 
+	public void setVerified(Boolean verified) {
+		this.verified = verified;
+	}
+
 	public Collection<VisitEntity> getVisits() {
 		return visits;
 	}
 
-	public void setVerified(Boolean verified) {
-		this.verified = verified;
-	}
+	public void setVisits(Collection<VisitEntity> visits) { this.visits = visits; }
+
+	public Collection<AddressEntity> getAddresses() { return addresses; }
+
+	public void setAddresses(Collection<AddressEntity> addresses) { this.addresses = addresses; }
 }

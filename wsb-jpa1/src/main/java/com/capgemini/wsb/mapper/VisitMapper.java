@@ -7,6 +7,7 @@ import com.capgemini.wsb.persistence.entity.VisitEntity;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public final class VisitMapper {
 
@@ -24,12 +25,12 @@ public final class VisitMapper {
         visitTO.setDoctor(DoctorMapper.mapToTOShort(visitEntity.getDoctor()));
         visitTO.setPatient(PatientMapper.mapToTOShort(visitEntity.getPatient()));
 
-        Collection<MedicalTreatmentTO> medicalTreatments = Collections.emptyList();
+        final Collection<MedicalTreatmentTO> medicalTreatments = new ArrayList<>(Collections.emptyList());
         if (visitEntity.getMedicalTreatments() != null)
         {
-            medicalTreatments = visitEntity.getMedicalTreatments().stream()
+            medicalTreatments.addAll(visitEntity.getMedicalTreatments().stream()
                     .map(MedicalTreatmentMapper::mapToTO)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
 
         visitTO.setMedicalTreatments(medicalTreatments);

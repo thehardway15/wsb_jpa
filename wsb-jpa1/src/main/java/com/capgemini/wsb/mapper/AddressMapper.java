@@ -27,7 +27,7 @@ public final class AddressMapper
         {
             return null;
         }
-        AddressEntity addressEntity = new AddressEntity();
+        final AddressEntity addressEntity = new AddressEntity();
         addressEntity.setId(addressTO.getId());
         addressEntity.setAddressLine1(addressTO.getAddressLine1());
         addressEntity.setAddressLine2(addressTO.getAddressLine2());
