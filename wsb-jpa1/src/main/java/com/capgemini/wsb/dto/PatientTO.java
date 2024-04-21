@@ -22,6 +22,8 @@ public class PatientTO implements Serializable {
 
     private Boolean verified;
 
+    private Long dayOff;
+
     private Collection<VisitTO> visits;
 
     public Long getId() {
@@ -98,5 +100,13 @@ public class PatientTO implements Serializable {
 
     public Boolean isVerified() {
         return verified;
+    }
+
+    public Long getDayOff() {
+        return dayOff;
+    }
+
+    public void setDayOff(Long dayOff) {
+        this.dayOff = dayOff;
     }
 }

@@ -51,6 +51,7 @@ public class PatientDaoTest
         patientEntity.setEmail("xh8pW@example.com");
         patientEntity.setDateOfBirth(LocalDate.now());
         patientEntity.setVerified(true);
+        patientEntity.setDayOff(0L);
 
         long entitiesNumBefore = patientDao.count();
         // when
@@ -73,6 +74,7 @@ public class PatientDaoTest
         patientEntity.setEmail("xh8pW@example.com");
         patientEntity.setDateOfBirth(LocalDate.now());
         patientEntity.setVerified(true);
+        patientEntity.setDayOff(0L);
 
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setAddressLine1("line1");
@@ -108,5 +110,35 @@ public class PatientDaoTest
         // then
         assertThat(doctorDao.count()).isEqualTo(3);
         assertThat(patientDao.count()).isEqualTo(2);
+    }
+
+    @Transactional
+    @Test
+    public void testShouldFindPatientByLastName() {
+        // given
+        // when
+        List<PatientEntity> patients = patientDao.findByLastName("Kowalski");
+        // then
+        assertThat(patients).hasSize(2);
+    }
+
+    @Transactional
+    @Test
+    public void testShouldFindPatientByDayOffGreaterThan() {
+        // given
+        // when
+        List<PatientEntity> patients = patientDao.findByDayOffGreaterThan(0L);
+        // then
+        assertThat(patients).hasSize(2);
+    }
+
+    @Transactional
+    @Test
+    public void testShouldFindPatientByVisitsCountGreaterThan() {
+        // given
+        // when
+        List<PatientEntity> patients = patientDao.findByVisitsCountGreaterThan(1L);
+        // then
+        assertThat(patients).hasSize(1);
     }
 }

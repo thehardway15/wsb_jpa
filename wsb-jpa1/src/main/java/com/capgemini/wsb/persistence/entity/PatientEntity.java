@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "PATIENT")
@@ -34,6 +35,10 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private Boolean verified;
+
+	@Min(0)
+	@Column(nullable = false)
+	private Long dayOff;
 
 	// two direction
 	@OneToMany(mappedBy = "patient", orphanRemoval = true)
@@ -101,6 +106,14 @@ public class PatientEntity {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Long getDayOff() {
+		return dayOff;
+	}
+
+	public void setDayOff(Long dayOff) {
+		this.dayOff = dayOff;
 	}
 
 	public Boolean isVerified() {

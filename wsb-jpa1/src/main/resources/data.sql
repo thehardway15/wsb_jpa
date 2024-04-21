@@ -11,10 +11,10 @@ insert into doctor (id, first_name, last_name, specialization, telephone_number,
 insert into doctor_to_address (doctor_id, address_id)
             values (1, 1), (2, 3);
 
-insert into patient (id, first_name, last_name, telephone_number, email, date_of_birth, patient_number, verified)
-            values (1, 'Jan', 'Kowalski', '3-123456789', 'qYUeh2@example.com', '2021-01-01', '123456788', true),
-                   (2, 'Jan', 'Nowak', '4-123456789', 'qYUeh3@example.com', '2021-01-01', '123456789', false),
-                   (3, 'Jan', 'Kowalski', '5-123456789', 'qYUeh4@example.com', '2021-01-01', '123456780', true);
+insert into patient (id, first_name, last_name, telephone_number, email, date_of_birth, patient_number, verified, day_off)
+            values (1, 'Jan', 'Kowalski', '3-123456789', 'qYUeh2@example.com', '2021-01-01', '123456788', true, 0),
+                   (2, 'Jan', 'Nowak', '4-123456789', 'qYUeh3@example.com', '2021-01-01', '123456789', false, 5),
+                   (3, 'Jan', 'Kowalski', '5-123456789', 'qYUeh4@example.com', '2021-01-01', '123456780', true, 14);
 
 insert into patient_to_address (patient_id, address_id)
             values (1, 1), (2, 2);

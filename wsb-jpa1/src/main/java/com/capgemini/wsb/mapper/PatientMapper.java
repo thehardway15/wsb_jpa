@@ -27,6 +27,7 @@ public final class PatientMapper {
         patientTO.setPatientNumber(patientEntity.getPatientNumber());
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
         patientTO.setVerified(patientEntity.isVerified());
+        patientTO.setDayOff(patientEntity.getDayOff());
 
         final Collection<VisitTO> visits = new ArrayList<>(Collections.emptyList());
         if (patientEntity.getVisits() != null)

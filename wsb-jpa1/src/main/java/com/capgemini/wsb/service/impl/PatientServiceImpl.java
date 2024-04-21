@@ -1,7 +1,9 @@
 package com.capgemini.wsb.service.impl;
 
 import com.capgemini.wsb.dto.PatientTO;
+import com.capgemini.wsb.dto.VisitTO;
 import com.capgemini.wsb.mapper.PatientMapper;
+import com.capgemini.wsb.mapper.VisitMapper;
 import com.capgemini.wsb.persistence.dao.PatientDao;
 import com.capgemini.wsb.persistence.entity.PatientEntity;
 import com.capgemini.wsb.service.PatientService;
@@ -40,6 +42,11 @@ public class PatientServiceImpl implements PatientService {
     public Boolean deleteById(final Long id) {
         patientDao.delete(id);
         return true;
+    }
+
+    @Override
+    public List<VisitTO> findVisitsByPatientId(Long id) {
+        return patientDao.findVisitsByPatientId(id).stream().map(VisitMapper::mapToTO).collect(Collectors.toList());
     }
 
 }

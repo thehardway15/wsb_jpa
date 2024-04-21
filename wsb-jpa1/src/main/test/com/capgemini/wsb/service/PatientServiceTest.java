@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -52,6 +54,16 @@ public class PatientServiceTest {
         assertThat(patientService.findAll().size()).isEqualTo(2);
         final DoctorTO doctorTO = doctorService.findById(3L);
         assertThat(doctorTO.getVisits().size()).isEqualTo(1);
+    }
+
+    @Transactional
+    @Test
+    public void testShouldReturnVisitsByPatientId() {
+        // given
+        // when
+        final List<VisitTO> visits = patientService.findVisitsByPatientId(2L);
+        // then
+        assertThat(visits).hasSize(2);
     }
 
 }
